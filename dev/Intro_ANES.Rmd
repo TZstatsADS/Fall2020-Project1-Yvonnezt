@@ -179,6 +179,7 @@ anes_vote_race_year = anes_use %>%
   mutate(
     prop=n/sum(n)
   )
+
 #%>%
 #  filter(vote == "1. Democrat" | vote == "2. Republican")
 
