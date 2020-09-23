@@ -1,9 +1,14 @@
 ---
 title: "Stats 5243 Project 1: Why we should use statistical methods instead of traditional polling method in analyzing the American National Election Studies (ANES) data"
 author: "Tianle Zhu"
-date: "9/21/2020"
+date: "9/23/2020"
 output: html_document
+fontsize: 16pt 
 ---
+
+
+<img src="../figs/election-ballot-box.jpg" width= "1000">
+
 
 # Section 1: Introduction
 From the 2016 election, we came to realize that the polling data can be significantly deviated from the ground truth. When various media industry are using poll data to make statistical inference to predict that Hillary would won the election in 2016, rarely are they realize that the inference approach is limited. There are two reasons. First, the sample data may not be representative. As far as we know by prospect the 2016 election, we realize that most of Trump's voters are not quite active in polling investigation, which biases the inference result, and lead to the unexpected winning of Trump. Secondly, the inference method is strightforward and naive. Without looking into how attributes can synergize together and affect the voting, the inference result would be unreliable. 
@@ -12,16 +17,16 @@ In this project, we do data cleaning and preprocessing. Then we compare the trad
 
 From this report, we want to answer 2 questions:
 
-+ How these variables influence the respondents' voting activity?
-+ What are the characteristics of active voters in the election?
++ **How these variables influence the respondents' voting activity?**
++ **What are the characteristics of active voters in the election?**
 
 This report is organized as follows:
 Section 2 laod R packages and data and do data cleaning and pre-processing. Section 3 and 4 talk about the univariate and mutivariate analysis, for statistical method logistic regression model and polling method, respectively. Section 5 summarizes our observations and concludes the report. 
 
 
-# Section 2: Data pre-processing.
+# Section 2: Data Pre-processing
 
-### Step 2.1: Checking `R` packages for data processing
+## Step 2.1: Checking `R` packages for data processing
 
 ```{r load libraries, warning=FALSE, message=FALSE, include=FALSE}
 packages.used = as.list(
@@ -45,13 +50,13 @@ check.pkg = function(x){
 lapply(packages.used, check.pkg)
 ```
 
-### Step 2.2: Import raw ANES data
+## Step 2.2: Import raw ANES data
 
-```{r read in data, message = FALSE}
+```{r include = FALSE}
 anes_dat <- read_dta("../data/anes_timeseries_cdf.dta")
 ```
 
-### Step 2.3: Process variables for analysis
+## Step 2.3: Process variables for analysis
 Original data and data missing value
 Original data includes 1029 variables and 59944 observations
 ```{r echo = FALSE}
@@ -104,7 +109,7 @@ Plot_NA <- ggplot(data = anes_NAs, mapping = aes(y = Count, x = Variable)) +
 Plot_NA 
 ```
 
-```{r}
+```{r echo = FALSE}
 # remove missing variables in the data 
 # Dealing with variable Turnout: change it to be 1 (voted) and 0 (did not vote).
 anes_use = anes_use %>% na.omit()
@@ -129,7 +134,7 @@ For the Survey question bias, it might occurs in the variable work and activitie
 
 For the Non-response bias, it is a type of bias that happens when some people fail to respond to a survey. People may refuse to answer, or lack the time or inclination to answer.For example, people may refuse to answer `money` variable. The responders might not want other people know they didn't donate or give money to individual candidate, so they refuse to answer question.    
 
-# Section 3: Statistical method--Logistic regression  
+# Section 3: Statistical Method--Logistic Regression  
 ```{r include = FALSE}
 set.seed(100)
 n <- nrow(anes_use)
@@ -141,11 +146,15 @@ minmodel <- glm(Turnout ~ 1, family = binomial(link=logit), data = anes_use_trai
 s <- step(minmodel,scope = list(lower = ~ 1, 
                                 upper = ~ Turnout ~ Year + Region + Income + Work + Education + Race + Gender + meeting + activities + care + tv + money), direction = "both")
 s$call
+```
 
+```{r}
 finalmodel <- glm(formula = Turnout ~ Region + Income + Work + Education + Race + Gender + meeting + activities + care + tv + money, family = binomial(link = logit), 
     data = anes_use_train) 
 finalmodel_summary <- finalmodel %>% summary()
+```
 
+```{r include = FALSE}
 model1 <-  glm(formula = Turnout ~ Year, family = binomial(link = logit), 
     data = anes_use_train) 
 AIC(model1)     # 7411.575
@@ -175,22 +184,17 @@ accuracy_test = (ConfusionMatrix[1,1] + ConfusionMatrix[2,2])/(ConfusionMatrix[1
 accuracy_test
 
 # Model Diagnostics - ROC
+library(InformationValue)
 plotROC(anes_use_test$Turnout, pred_testvalue)
 ```
 
 
-## Model selection 
+### Model selection 
 A good model is the one that has minimum AIC among all the poptential models. A lower AIC value indicates a better fit of the data.
 By using stepwise model selection, the finalmodel performance has the minimus AIC. For example, Model 1 uses only one deomgraphic variables 'Year' in the training dataset and obtains AIC 7411.575, whereas the final model obtains AIC 6060.16.
 
 
-### Step 3.1 Univariate analysis in statistical modeling
-
-+ The signs and magnitude of the logistic regression coefficients 
-
-The summary(finalmodel) gives the beta coefficients, Standard error, z Value and p Value.
-
-For the variable activities which includes activities levels from 1 (Lowest level) to 6 (Highest level). 
+## Step 3.1 Univariate analysis in statistical modeling
 
 <img src="../figs/finalmodel_Summary.png" width= "1000">
 ```{r, include = FALSE}
@@ -289,7 +293,7 @@ table(as.character(anes_use$money))
   + **The respondents who give money to individual candidate during the campaigns are more likely to vote than the respondents who didn't give money.**
 
 
-## Model Diagnostics
+### Model Diagnostics
 
 + VIF
 Similar to linear regression, we should check for multicollinearity in the model. As seen below, all X variables in the model have VIF well below 4.
@@ -299,9 +303,9 @@ Similar to linear regression, we should check for multicollinearity in the model
 vif(finalmodel)
 ```
 
-### Step 3.2  Consider multivariate analysis 
+## Step 3.2  Consider multivariate analysis 
 
-## Model Performance
+### Model Performance
 + ROC
 
 ```{r}
@@ -313,8 +317,6 @@ Receiver Operating Characteristics Curve (ROC) traces the percentage of true pos
 
 ROC = 0.7654762
 
-
-
 ```{r}
 ConfusionMatrix
 ```
@@ -324,47 +326,47 @@ Sensitivity (or True Positive Rate) is the percentage of 1’s (actuals) correct
 
 $Sensitivity = \frac{number\ of \ Actual\ 1′s\ and\ Predicted\ as\ 1′s}{number\ of\ Actual\ 1′s} = 0.9227092$
 
-Specificity (orFalse Positive Rate) is the percentage of 0’s (actuals) correctly predicted. 
+Specificity (or False Positive Rate) is the percentage of 0’s (actuals) correctly predicted. 
 
 $Sensitivity = \frac{number\ of \ Actual\ 1′s\ and\ Predicted\ as\ 1′s}{number\ of\ Actual\ 1′s} = 0.3011765$
 
 The above numbers are calculated on the validation sample that was not used for training the model. So, a truth detection rate of 30% on test data is good.
 
 
-#### By using the logist model, we can conclude  
-**The most active group**:  Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` +  
-                            Income:`68 to 95 percentile`
-                            Work: `Clerical and sales workers`
-                            Education: `College or advanced degree (no cases 1948)`
-                            Race: `Black non-Hispanic (1948-2012)`
-                            Gender: `Female`
-                            meeting: `meeting Yes`
-                            activities: `Activities level 4`
-                            care: `Care a good deal`
-                            tv: `Yes, watched TV program(s) about the campaign`
-                            money:`money Yes` 
+##### By using the logist model, we can conclude  
+**The most active group**:  Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` /n
+                            Income:`68 to 95 percentile`/n
+                            Work: `Clerical and sales workers`/n
+                            Education: `College or advanced degree (no cases 1948)`/n
+                            Race: `Black non-Hispanic (1948-2012)`/n
+                            Gender: `Female`/n
+                            meeting: `meeting Yes`/n
+                            activities: `Activities level 4`/n
+                            care: `Care a good deal`/n
+                            tv: `Yes, watched TV program(s) about the campaign`/n
+                            money:`money Yes` /n
 
-#### By using the logist model, we can conclude the least active group 
-**The least active group**: Region: `South (AL, AR, DE, D.C., FL, GA, KY, LA, MD, MS, NC` 
-                            Income: `0 to 16 percentile`
-                            Work: `Laborers, except farm`
-                            Education: `High school (12 grades or fewer, incl.non-college`
-                            Race: `American Indian or Alaska Native non-Hispanic (1966-2012)`
-                            Gender: `Male`
-                            meeting: `meeting No`
-                            activities: `Activities level 1`
-                            care: `Don't care very much or DK, pro-con, depends`
-                            tv: `No, didn't watch TV programs about the campaign`
-                            money:`money No` 
+##### By using the logist model, we can conclude the least active group 
+**The least active group**: Region: `South (AL, AR, DE, D.C., FL, GA, KY, LA, MD, MS, NC` /n
+                            Income: `0 to 16 percentile`/n
+                            Work: `Laborers, except farm`/n
+                            Education: `High school (12 grades or fewer, incl.non-college`/n
+                            Race: `American Indian or Alaska Native non-Hispanic (1966-2012)`/n
+                            Gender: `Male`/n
+                            meeting: `meeting No`/n
+                            activities: `Activities level 1`/n
+                            care: `Don't care very much or DK, pro-con, depends`/n
+                            tv: `No, didn't watch TV programs about the campaign`/n
+                            money:`money No` /n
 
-# Section 4: Polling method
+# Section 4: Polling Method
 
 Besides statistical modeling, we also can use traditional polling method on ANES data to draw the inference on which group of people have high probability to vote. 
 
 The first step: analyze the relationship between one single independent variable and dependent variable 
 The second step: analyze multile variables at the same time
 
-### Step 4.1: Univariate analysis in polling
+## Step 4.1: Univariate analysis in polling
 ```{r, warning = FALSE, message = FALSE, include = FALSE}
 colnames(anes_use)
 anes_use_region <- anes_use
@@ -378,77 +380,77 @@ anes_use_region$Region <- as.factor(anes_use_region$Region)
 Plot_Region <- anes_use_region %>% group_by(Region) %>% summarise(precentage = sum(Turnout)/nrow(anes_use_region)) %>% 
   select(precentage, Region) %>% 
   ggplot(mapping = aes(x = Region, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for different Regions") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10), plot.title = element_text(hjust = 0.5)) 
 
 Plot_Income <- anes_use %>% group_by(Income) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, Income) %>% 
   ggplot(mapping = aes(x = Income, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for different Income levels") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10), plot.title = element_text(hjust = 0.5)) 
 
 Plot_Work <- anes_use %>% group_by(Work) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, Work) %>% 
   ggplot(mapping = aes(x = Work, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for different work groups") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10), plot.title = element_text(hjust = 0.5)) 
 
 Plot_Education <- anes_use %>% group_by(Education) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, Education) %>% 
   ggplot(mapping = aes(x = Education, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for different Education levels") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10),plot.title = element_text(hjust = 0.5)) 
 
 Plot_Race <- anes_use %>% group_by(Race) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, Race) %>% 
   ggplot(mapping = aes(x = Race, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for different Race") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10),plot.title = element_text(hjust = 0.5)) 
 
 Plot_Gender <- anes_use %>% group_by(Gender) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, Gender) %>% 
   ggplot(mapping = aes(x = Gender, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for Male and Female") + 
   theme_light() + theme(plot.title = element_text(hjust = 0.5, size = 9)) 
 
 Plot_meeting <- anes_use %>% group_by(meeting) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, meeting) %>% 
   ggplot(mapping = aes(x = meeting, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for the respondents attend or never attend a political meeting") + 
   theme_light() + theme(plot.title = element_text(hjust = 0.5, size = 9)) 
 
 Plot_activities <- anes_use %>% group_by( activities) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, activities) %>% 
   ggplot(mapping = aes(x =  activities, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for the participants chose diifferent activities levels") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10), plot.title = element_text(hjust = 0.5)) 
 
 Plot_care <- anes_use %>% group_by(care) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, care) %>% 
   ggplot(mapping = aes(x = care, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for the respondents care or don't care the which party wins presidential election") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10), plot.title = element_text(hjust = 0.5)) 
 
 Plot_tv <- anes_use %>% group_by(tv) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, tv) %>% 
   ggplot(mapping = aes(x = tv, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = "The percentage of vote for the respondents who watched or didn't watch TV program(s) about the campaign") + 
   theme_light() + theme(axis.text.x = element_text(angle = 10), plot.title = element_text(hjust = 0.5)) 
 
 Plot_money <- anes_use %>% group_by(money) %>% summarise(precentage = sum(Turnout)/nrow(anes_use)) %>% 
   select(precentage, money) %>% 
   ggplot(mapping = aes(x = money, y = precentage)) + 
-  geom_bar(stat = "identity", color = "black", fill="grey") + 
+  geom_bar(stat = "identity", color = "black", fill="lightblue2") + 
   #labs(title = " The percentage of vote for the respondents who gave or didn't give money to individual candidate") + 
   theme_light() + theme(plot.title = element_text(hjust = 0.5, size = 9)) 
 
@@ -463,7 +465,7 @@ ggarrange(Plot_care, Plot_tv, ncol = 2, nrow = 1)
 ```
 
 
-### Step 4.2: Consider multiple independet variables by using group_by function
+## Step 4.2: Consider multiple independet variables by using group_by function
 ```{r}
 group_analysis <- anes_use %>% group_by(Region, Income, Work, Education, Race, Gender, meeting, activities, care, tv, money) %>% summarise(n = n(), num_vote = sum(Turnout), prop = num_vote/n) %>% arrange(desc(prop))
 
@@ -493,12 +495,10 @@ group_analysis %>% filter(Region == "2. North Central (IL, IN, IA, KS, MI, MN, M
                           care == "2. Care a good deal",
                           tv == "2. Yes, watched TV program(s) about the campaign [a",
                           money == "1. Yes")
-
-
-
 ```
 
 From the above analysis, after group by all the variables, we obtain 2614 subgroups that has voting propability equal to 1, which makes no sense. However, the reason is that such subgroups have only severaal data points, which measn the data size is not enough for reliable statistical inference. In the population data, the same subgroup selected by the same condition have far more voters comparing to the subgroup in our sample data, and the statistics of the sample is an unreliable estimate of the population. We can never conclude that as 2 which is all of the group of people in our sample voted in the election, so all people match the same condition in the population would always vote, without exemptions. It is clear that the result from polling is not robust and unreliable. 
+
 
 
 # Section 5: Conclusion
@@ -506,7 +506,7 @@ From the above analysis, after group by all the variables, we obtain 2614 subgro
 In this Project, I applied severval statistical methods and polling method to 1) explore the respondents' voting activity
 2) answer the two questions previously asked in Section 2. 3) discuss the advantage and disadvantage of these two methods.
 
-+ Which variables will affect the respondents' voting activity?
+#### **How these variables influence the respondents' voting activity?**
  + Polling method
   + Before the analysis, we have to choose our variables manually. 
   + Univariable analysis in polling method can give us the estimate key values at a glance. For instance, we can conclue the famale have highter probability to vote than male in the Gender bar plot. 
@@ -517,7 +517,7 @@ In this Project, I applied severval statistical methods and polling method to 1)
   + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coeffecients indicate in which direction would the attribute affect the respondents' probability to vote. The magnitude of the coefficient evaluate the degree of impact of that variable, and is comparable among different variables.
   + **Except the varaibles Year and money, all other variables will affect the respondents' voting activity.** 
 
-+ Which group of people will be the most and least active voters in the election?
+#### **What are the characteristics of active voters in the election?**
  + Polling method
    + By analyzing multiple variables, polling method cannot give us a clear and reliable results about which variables will affect the the respondents' voting activity. Since after grouping by all variables, we get around 65% of subgroups which will vote with probability 100%. That result is questionable as the subgroup data size is not sufficient to do any inference. It cannot help us find the subgroup that has higher probability to vote. Moreover, as the number of conditional variables increase, the data would be subsetted into extremely sparse combination, and some combinations may not even exist. For example, the subgroup most likely to vote obtained from logistic regression model doesn't have any data points in our data, thus not reflected in the polling method. 
    + **2614 subgroups** will vote with probability 100%
@@ -551,8 +551,5 @@ In this Project, I applied severval statistical methods and polling method to 1)
 # Section 6: Reference
 + [The American National Election Studies (ANES) dataset](https://electionstudies.org/data-center/)
 + [Survey question bias](https://surveytown.com/10-examples-of-biased-survey-questions/)
-
-
-
-
++ [Non Response bias](https://www.formpl.us/blog/response-non-response-bias)
 
