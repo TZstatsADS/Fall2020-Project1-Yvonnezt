@@ -64,10 +64,10 @@ Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by
 
 ```
 proj/
-├── dev/Stats-5243-Project-1.html /Stats-5243-Project-1.Rmd
+├── dev/Stats-5243-Project-1.html & Stats-5243-Project-1.Rmd
 ├── data/ anes_timeseries_cdf.dta
 ├── doc/
-├── figs/ finalmodel_Summary.png/ election-ballot-box.jpg
+├── figs/ finalmodel_Summary.png & election-ballot-box.jpg
 └── output/data_use.RData
 ```
 
