@@ -17,7 +17,7 @@ Term: Fall 2020
 + Project Conclusion: 
 In this Project, I applied severval statistical methods and polling method to 1) explore the respondents' voting activity 2) answer the two questions previously asked in Section 2. 3) discuss the advantage and disadvantage of these two methods.
 
-   + #### **How these variables influence the respondents' voting activity?**
+   #### **How these variables influence the respondents' voting activity?**
    + Polling method
      + Before the analysis, we have to choose our variables manually. 
      + Univariable analysis in polling method can give us the estimate key values at a glance. For instance, we can conclue the famale have highter probability to vote than male in the Gender bar plot. 
@@ -28,7 +28,7 @@ In this Project, I applied severval statistical methods and polling method to 1)
      + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coeffecients indicate in which direction would the attribute affect the respondents' probability to vote. The magnitude of the coefficient evaluate the degree of impact of that variable, and is comparable among different variables.
      + **Except the varaibles Year and money, all other variables will affect the respondents' voting activity.** 
 
-   + #### **What are the characteristics of active voters in the election?**
+   #### **What are the characteristics of active voters in the election?**
    + Polling method
      + By analyzing multiple variables, polling method cannot give us a clear and reliable results about which variables will affect the the respondents' voting activity. Since after grouping by all variables, we get around 65 percent of subgroups which will vote with probability 100 percent . That result is questionable as the subgroup data size is not sufficient to do any inference. It cannot help us find the subgroup that has higher probability to vote. Moreover, as the number of conditional variables increase, the data would be subsetted into extremely sparse combination, and some combinations may not even exist. For example, the subgroup most likely to vote obtained from logistic regression model doesn't have any data points in our data, thus not reflected in the polling method. 
      + **2614 subgroups** will vote with probability 100 percent 
