@@ -17,26 +17,26 @@ Term: Fall 2020
 + Project Conclusion: 
 In this Project, I applied severval statistical methods and polling method to 1) explore the respondents' voting activity 2) answer the two questions previously asked in Section 2. 3) discuss the advantage and disadvantage of these two methods.
 
-#### **How these variables influence the respondents' voting activity?**
- + Polling method
-   + Before the analysis, we have to choose our variables manually. 
-   + Univariable analysis in polling method can give us the estimate key values at a glance. For instance, we can conclue the famale have highter probability to vote than male in the Gender bar plot. 
-   + **From bar plot, we can get some conclusion about each variable response to the probablity to vote**
+   + #### **How these variables influence the respondents' voting activity?**
+   + Polling method
+     + Before the analysis, we have to choose our variables manually. 
+     + Univariable analysis in polling method can give us the estimate key values at a glance. For instance, we can conclue the famale have highter probability to vote than male in the Gender bar plot. 
+     + **From bar plot, we can get some conclusion about each variable response to the probablity to vote**
  
- + Statistical methods
-   + When we do the data proprocessing, we can use model selection to help use to choose our variables that will effect our target variable Turnout (vote `1` or not vote `0`)
-   + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coeffecients indicate in which direction would the attribute affect the respondents' probability to vote. The magnitude of the coefficient evaluate the degree of impact of that variable, and is comparable among different variables.
-   + **Except the varaibles Year and money, all other variables will affect the respondents' voting activity.** 
+   + Statistical methods
+     + When we do the data proprocessing, we can use model selection to help use to choose our variables that will effect our target variable Turnout (vote `1` or not vote `0`)
+     + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coeffecients indicate in which direction would the attribute affect the respondents' probability to vote. The magnitude of the coefficient evaluate the degree of impact of that variable, and is comparable among different variables.
+     + **Except the varaibles Year and money, all other variables will affect the respondents' voting activity.** 
 
-#### **What are the characteristics of active voters in the election?**
- + Polling method
-   + By analyzing multiple variables, polling method cannot give us a clear and reliable results about which variables will affect the the respondents' voting activity. Since after grouping by all variables, we get around 65 percent of subgroups which will vote with probability 100 percent . That result is questionable as the subgroup data size is not sufficient to do any inference. It cannot help us find the subgroup that has higher probability to vote. Moreover, as the number of conditional variables increase, the data would be subsetted into extremely sparse combination, and some combinations may not even exist. For example, the subgroup most likely to vote obtained from logistic regression model doesn't have any data points in our data, thus not reflected in the polling method. 
-   + **2614 subgroups** will vote with probability 100 percent 
-   + **699 subgroups** will vote with probability 0 percent 
+   + #### **What are the characteristics of active voters in the election?**
+   + Polling method
+     + By analyzing multiple variables, polling method cannot give us a clear and reliable results about which variables will affect the the respondents' voting activity. Since after grouping by all variables, we get around 65 percent of subgroups which will vote with probability 100 percent . That result is questionable as the subgroup data size is not sufficient to do any inference. It cannot help us find the subgroup that has higher probability to vote. Moreover, as the number of conditional variables increase, the data would be subsetted into extremely sparse combination, and some combinations may not even exist. For example, the subgroup most likely to vote obtained from logistic regression model doesn't have any data points in our data, thus not reflected in the polling method. 
+     + **2614 subgroups** will vote with probability 100 percent 
+     + **699 subgroups** will vote with probability 0 percent 
  
- + Statistical methods
-   + By analyzing multiple variables, Statistical methods make better inference. For instance, instead of inferring based on small sample size subgroup, the logistic model use all variables to build the model. Thus, logistic model can provide more accurate inference. it overcomes the limit where there are no such subgroups as it can make inference based on all variables comprehensively. From the model performance part, our model obtains 76 percent  accuracy.
-   + **The most active group**: Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` +  
+   + Statistical methods
+     + By analyzing multiple variables, Statistical methods make better inference. For instance, instead of inferring based on small sample size subgroup, the logistic model use all variables to build the model. Thus, logistic model can provide more accurate inference. it overcomes the limit where there are no such subgroups as it can make inference based on all variables comprehensively. From the model performance part, our model obtains 76 percent  accuracy.
+     + **The most active group**: Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` +  
                             Income:`68 to 95 percentile`
                             Work: `Clerical and sales workers`
                             Education: `College or advanced degree (no cases 1948)`
@@ -47,7 +47,7 @@ In this Project, I applied severval statistical methods and polling method to 1)
                             care: `Care a good deal`
                             tv: `Yes, watched TV program(s) about the campaign`
                             money:`money Yes` 
-   + **The least active group**: Region: `South (AL, AR, DE, D.C., FL, GA, KY, LA, MD, MS, NC` 
+     + **The least active group**: Region: `South (AL, AR, DE, D.C., FL, GA, KY, LA, MD, MS, NC` 
                             Income: `0 to 16 percentile`
                             Work: `Laborers, except farm`
                             Education: `High school (12 grades or fewer, incl.non-college`
