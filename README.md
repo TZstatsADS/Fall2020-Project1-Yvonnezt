@@ -15,8 +15,10 @@ Term: Fall 2020
 + Project summary: In this project, we do data cleaning and preprocessing on the American National Election Studies (ANES) data. Then we compare the traditional polling method with statistical methods, from the perspective of univariate analysis and multivariate analysis. We conclude that in univariate analysis, we cannot derive much insight from the visualizations. Meanwhile, in the multivariate analysis, there are also several limitations, which we will explicit in the summary section. However, the statistical methods make more sense both in univariate analysis and multivariate analysis. By using statistical method, the inference result could be far more reliable than the traditional polling method method. 
 
 + Project Conclusion: 
-In this Project, I applied severval statistical methods and polling method to 1) explore the respondents' voting activity
-2) answer the two questions previously asked in Section 2. 3) discuss the advantage and disadvantage of these two methods.
+In this Project, I applied severval statistical methods and polling method to 
+  + 1) explore the respondents' voting activity 
+  + 2) answer the two questions previously asked in Section 2. 
+  + 3) discuss the advantage and disadvantage of these two methods.
 
 #### **How these variables influence the respondents' voting activity?**
  + Polling method
