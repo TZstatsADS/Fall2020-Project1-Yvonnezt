@@ -22,14 +22,14 @@ In this Project, I applied severval statistical methods and polling method to
 
 #### **How these variables influence the respondents' voting activity?**
  + Polling method
-  + Before the analysis, we have to choose our variables manually. 
-  + Univariable analysis in polling method can give us the estimate key values at a glance. For instance, we can conclue the famale have highter probability to vote than male in the Gender bar plot. 
-  + **From bar plot, we can get some conclusion about each variable response to the probablity to vote**
+   + Before the analysis, we have to choose our variables manually. 
+   + Univariable analysis in polling method can give us the estimate key values at a glance. For instance, we can conclue the famale have highter probability to vote than male in the Gender bar plot. 
+   + **From bar plot, we can get some conclusion about each variable response to the probablity to vote**
  
  + Statistical methods
-  + When we do the data proprocessing, we can use model selection to help use to choose our variables that will effect our target variable Turnout (vote `1` or not vote `0`)
-  + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coeffecients indicate in which direction would the attribute affect the respondents' probability to vote. The magnitude of the coefficient evaluate the degree of impact of that variable, and is comparable among different variables.
-  + **Except the varaibles Year and money, all other variables will affect the respondents' voting activity.** 
+   + When we do the data proprocessing, we can use model selection to help use to choose our variables that will effect our target variable Turnout (vote `1` or not vote `0`)
+   + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coeffecients indicate in which direction would the attribute affect the respondents' probability to vote. The magnitude of the coefficient evaluate the degree of impact of that variable, and is comparable among different variables.
+   + **Except the varaibles Year and money, all other variables will affect the respondents' voting activity.** 
 
 #### **What are the characteristics of active voters in the election?**
  + Polling method
