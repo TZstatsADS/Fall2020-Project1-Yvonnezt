@@ -25,20 +25,20 @@ In this Project, I applied several statistical methods and polling method to 1) 
    + **From bar plot, we can get some conclusion about each variable response to the probability to vote**
  
  + Statistical methods
- + When we do the data preprocessing, we can use model selection to help users to choose our variables that will affect our target variable Turnout (vote `1` or not vote `0`)
- + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coefficients indicate in which direction would the attribute affects the respondents' probability to vote. The magnitude of the coefficient evaluates the degree of impact of that variable and is comparable among different variables.
- + **Except the variables Year and money, all other variables will affect the respondents' voting activity.** 
+   + When we do the data preprocessing, we can use model selection to help users to choose our variables that will affect our target variable Turnout (vote `1` or not vote `0`)
+   + In univariate analysis, we can use coefficients and p-values from the summary of our final model. The positive or negative coefficients indicate in which direction would the attribute affects the respondents' probability to vote. The magnitude of the coefficient evaluates the degree of impact of that variable and is comparable among different variables.
+   + **Except the variables Year and money, all other variables will affect the respondents' voting activity.** 
 
 #### **What are the characteristics of active voters in the election?**
  + Polling method
-  + By analyzing multiple variables, the polling method cannot give us clear and reliable results about which variables will affect the respondents' voting activity. Since after grouping by all variables, we get around 65 percent of subgroups which will vote with a probability of 100 percent. That result is questionable as the subgroup data size is not sufficient to do any inference. It cannot help us find the subgroup that has a higher probability to vote. Moreover, as the number of conditional variables increases, the data would be subsetted into the extremely sparse combination, and some combinations may not even exist. For example, the subgroup most likely to vote obtained from the logistic regression model doesn't have any data points in our data, thus not reflected in the polling method. 
-  + **2614 subgroups** will vote with probability 100 percent 
-  + **699 subgroups** will vote with probability 0 percent 
+    + By analyzing multiple variables, the polling method cannot give us clear and reliable results about which variables will affect the respondents' voting activity. Since after grouping by all variables, we get around 65 percent of subgroups which will vote with a probability of 100 percent. That result is questionable as the subgroup data size is not sufficient to do any inference. It cannot help us find the subgroup that has a higher probability to vote. Moreover, as the number of conditional variables increases, the data would be subsetted into the extremely sparse combination, and some combinations may not even exist. For example, the subgroup most likely to vote obtained from the logistic regression model doesn't have any data points in our data, thus not reflected in the polling method. 
+    + **2614 subgroups** will vote with probability 100 percent 
+    + **699 subgroups** will vote with probability 0 percent 
  
  + Statistical methods
-  + By analyzing multiple variables, Statistical methods make a better inference. For instance, instead of inferring based on a small sample size subgroup, the logistic model uses all variables to build the model. Thus, the logistic model can provide more accurate inference. it overcomes the limit where there are no such subgroups as it can make inference based on all variables comprehensively. From the model performance part, our model obtains 76 percent accuracy.
-  + **The most active group**:  
-   + Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` 
+    + By analyzing multiple variables, Statistical methods make a better inference. For instance, instead of inferring based on a small sample size subgroup, the logistic model uses all variables to build the model. Thus, the logistic model can provide more accurate inference. it overcomes the limit where there are no such subgroups as it can make inference based on all variables comprehensively. From the model performance part, our model obtains 76 percent accuracy.
+    + **The most active group**:  
+     + Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` 
    + Income:`68 to 95 percentile`
    + Work: `Clerical and sales workers`
    + Education: `College or advanced degree (no cases 1948)`
