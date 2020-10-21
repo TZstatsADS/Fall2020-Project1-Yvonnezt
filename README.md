@@ -38,8 +38,8 @@ In this Project, I applied several statistical methods and polling method to 1) 
  + Statistical methods
     + By analyzing multiple variables, Statistical methods make a better inference. For instance, instead of inferring based on a small sample size subgroup, the logistic model uses all variables to build the model. Thus, the logistic model can provide more accurate inference. it overcomes the limit where there are no such subgroups as it can make inference based on all variables comprehensively. From the model performance part, our model obtains 76 percent accuracy.
     + **The most active group**:  
-     + Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` 
-   + Income:`68 to 95 percentile`
+      + Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` 
+      + Income:`68 to 95 percentile`
    + Work: `Clerical and sales workers`
    + Education: `College or advanced degree (no cases 1948)`
    + Race: `Black non-Hispanic (1948-2012)`
