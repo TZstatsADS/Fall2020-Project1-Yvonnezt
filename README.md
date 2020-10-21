@@ -9,14 +9,13 @@ This is the first and only *individual* (as opposed to *team*) this semester.
 
 Term: Fall 2020
 
-+ Project title: Why we should use statistical methods instead of traditional polling method in analyzing the American National Election Studies (ANES) data
++ **Project title: Why we should use statistical methods instead of traditional polling method in analyzing the American National Election Studies (ANES) data**
 + This project is conducted by Tianle Zhu
 
 + Project summary: In this project, we do data cleaning and preprocessing on the American National Election Studies (ANES) data. Then we compare the traditional polling method with statistical methods, from the perspective of univariate analysis and multivariate analysis. We conclude that in univariate analysis, we cannot derive much insight from the visualizations. Meanwhile, in the multivariate analysis, there are also several limitations, which we will explicit in the summary section. However, the statistical methods make more sense both in univariate analysis and multivariate analysis. By using the statistical method, the inference result could be far more reliable than the traditional polling method. 
 
 + Project Conclusion: 
-In this Project, I applied several statistical methods and polling method to 1) explore the respondents' voting activity
-2) answer the two questions previously asked in Section 2. 3) discuss the advantage and disadvantages of these two methods.
+In this Project, I applied several statistical methods and polling method to 1) explore the respondents' voting activity 2) answer the two questions previously asked in Section 2. 3) discuss the advantage and disadvantages of these two methods.
 
 #### **How these variables influence the respondents' voting activity?**
  + Polling method
@@ -67,7 +66,7 @@ Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by
 ```
 proj/
 ├── dev/Stats-5243-Project-1.html /Stats-5243-Project-1.Rmd
-├── data/ anes_timeseries_cdf.dta
+├── data/ anes_timeseries_cdf.dta.zip
 ├── doc/
 ├── figs/ finalmodel_Summary.png/ election-ballot-box.jpg
 └── output/data_use.RData
