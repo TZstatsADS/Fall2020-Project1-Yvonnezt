@@ -20,9 +20,9 @@ In this Project, I applied several statistical methods and polling method to 1) 
 
 #### **How these variables influence the respondents' voting activity?**
  + Polling method
- + Before the analysis, we have to choose our variables manually. 
- + Univariable analysis in the polling method can give us the estimated key values at a glance. For instance, we can conclude the female have a higher probability to vote than males in the Gender bar plot. 
- + **From bar plot, we can get some conclusion about each variable response to the probability to vote**
+   + Before the analysis, we have to choose our variables manually. 
+   + Univariable analysis in the polling method can give us the estimated key values at a glance. For instance, we can conclude the female have a higher probability to vote than males in the Gender bar plot. 
+   + **From bar plot, we can get some conclusion about each variable response to the probability to vote**
  
  + Statistical methods
  + When we do the data preprocessing, we can use model selection to help users to choose our variables that will affect our target variable Turnout (vote `1` or not vote `0`)
