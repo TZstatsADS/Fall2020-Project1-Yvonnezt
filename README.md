@@ -40,27 +40,27 @@ In this Project, I applied several statistical methods and polling method to 1) 
     + **The most active group**:  
       + Region: `North Central (IL, IN, IA, KS, MI, MN, MO, NE, ND` 
       + Income:`68 to 95 percentile`
-   + Work: `Clerical and sales workers`
-   + Education: `College or advanced degree (no cases 1948)`
-   + Race: `Black non-Hispanic (1948-2012)`
-   + Gender: `Female`
-   + meeting: `meeting Yes`
-   + activities: `Activities level 4`
-   + care: `Care a good deal`
-   + tv: `Yes, watched TV program(s) about the campaign`
-   + money:`money Yes` 
-  + **The least active group**: 
-   + Region: `South (AL, AR, DE, D.C., FL, GA, KY, LA, MD, MS, NC` 
-   + Income: `0 to 16 percentile`
-   + Work: `Laborers, except farm`
-   + Education: `High school (12 grades or fewer, include.non-college`
-   + Race: `American Indian or Alaska Native non-Hispanic (1966-2012)`
-   + Gender: `Male`
-   + meeting: `meeting No`
-   + activities: `Activities level 1`
-   + care: `Don't care very much or DK, pro-con, depends`
-   + tv: `No, didn't watch TV programs about the campaign`
-   + money:`money No`
+      + Work: `Clerical and sales workers`
+      + Education: `College or advanced degree (no cases 1948)`
+      + Race: `Black non-Hispanic (1948-2012)`
+      + Gender: `Female`
+      + meeting: `meeting Yes`
+      + activities: `Activities level 4`
+      + care: `Care a good deal`
+      + tv: `Yes, watched TV program(s) about the campaign`
+      + money:`money Yes` 
+    + **The least active group**: 
+      + Region: `South (AL, AR, DE, D.C., FL, GA, KY, LA, MD, MS, NC` 
+      + Income: `0 to 16 percentile`
+      + Work: `Laborers, except farm`
+      + Education: `High school (12 grades or fewer, include.non-college`
+      + Race: `American Indian or Alaska Native non-Hispanic (1966-2012)`
+      + Gender: `Male`
+      + meeting: `meeting No`
+      + activities: `Activities level 1`
+      + care: `Don't care very much or DK, pro-con, depends`
+      + tv: `No, didn't watch TV programs about the campaign`
+      + money:`money No`
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is organized as follows.
 
